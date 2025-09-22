@@ -6,12 +6,10 @@ import pytest
 from locators import Locators
 import random
 import string
+from helpers import generate_random_email
 
 class TestAdvertisment:
-     def generate_random_email(self):
-        letters = string.ascii_lowercase
-        rand_email = ''.join(random.sample(letters, 9))+"@example.com"
-        return rand_email
+     
 
 
      def test_unautor_advertisment(self,driver):
@@ -23,7 +21,7 @@ class TestAdvertisment:
      def test_autor_advertisment(self,driver):        
         driver.find_element(*Locators.REGISTER_BUTTON).click()
         driver.find_element(*Locators.NO_ACCOUNT_BUTTON).click()
-        driver.find_element(*Locators.EMAIL_INPUT).send_keys(self.generate_random_email())
+        driver.find_element(*Locators.EMAIL_INPUT).send_keys(generate_random_email())
         driver.find_element(*Locators.PASSWORD_INPUT).send_keys("Perkhurova_22")
         driver.find_element(*Locators.PASSWORD_CONFIRM_INPUT).send_keys("Perkhurova_22")
         driver.find_element(*Locators.CREATE_ACCOUNT_BUTTON).click()
